@@ -12,10 +12,10 @@ public class Exec {
 //		int runMinutes;
 //		int runSeconds;
 		Gender gender;
-		int age;
+		AgeRange ageRange;
 		
 		gender = getGender(scanner);
-		age = getAge(scanner);
+		ageRange = getAgeRange(scanner);
 		pushupNum = getPushUps(scanner);
 //		situpNum = getSitUps(scanner);
 //		runMinutes = getMinutes(scanner);
@@ -23,7 +23,7 @@ public class Exec {
 		
 		scanner.close();
 		
-		Soldier soldier =  new Soldier(gender, age, pushupNum);
+		Soldier soldier =  new Soldier(gender, ageRange, pushupNum);
 		
 		System.out.println(PushupCalculator.getInstance().calculatePushupScore(soldier));
 
@@ -50,26 +50,69 @@ public class Exec {
 		return gender;
 	}
 	
-	public static int getAge(Scanner scanner) {
-		String ageString = "";
-		int age = 0;
+	public static AgeRange getAgeRange(Scanner scanner) {
+		String inputString = "";
+		int ageInput = 0;
+		AgeRange ageRange;
 		
-		while (age < 17) {
+		while (true) {
 			System.out.println("Enter the soldier's age: ");
-			ageString = scanner.next();
+			inputString = scanner.next();
 			try
 			{
-			  age = Integer.parseInt(ageString);
-			  if (age < 17) {
+			  ageInput = Integer.parseInt(inputString);
+			  
+			  if (ageInput >= 62) {
+			      ageRange = AgeRange.SIXTYTWO_AND_HIGHER;
+			      break;
+			  } 
+			  else if (ageInput >= 57) {
+				  ageRange = AgeRange.FIFTYSEVEN_TO_SIXTYONE;
+				  break;
+			  } 
+			  else if (ageInput >= 52) {
+				  ageRange = AgeRange.FIFTYTWO_TO_FIFTYSIX;
+				  break;
+			  }
+			  else if (ageInput >= 47) {
+				  ageRange = AgeRange.FORTYSEVEN_TO_FIFTYONE;
+				  break;
+			  }
+			  else if (ageInput >= 42) {
+				  ageRange = AgeRange.FORTYTWO_TO_FORTYSIX;
+				  break;
+			  }
+			  else if (ageInput >= 37) {
+			      ageRange = AgeRange.THIRTYSEVEN_TO_FORTYONE;
+			      break;
+			  }
+			  else if (ageInput >= 32) {
+				  ageRange = AgeRange.THIRTYTWO_TO_THIRTYSIX;
+				  break;
+			  }
+			  else if (ageInput >= 27) {
+				  ageRange = AgeRange.TWENTYSEVEN_TO_THIRTYONE;
+				  break;
+				  
+			  }
+			  else if (ageInput >= 22) {
+				  ageRange = AgeRange.TWENTYTWO_TO_TWENTYSIX;
+				  break;
+			  }
+			  else if (ageInput >= 17) {
+				  ageRange = AgeRange.SEVENTEEN_TO_TWENTYONE;
+				  break;
+			  }
+			  else {
 				  System.out.println("You must enter an age of 17 or higher.");
 			  }
-			}
+			}  
 			catch(Exception e)
 			{
 			  System.out.println("ERROR: Invalid Data.");
 			}
 		}
-		return age;
+		return ageRange;
 	}
 	
 	public static int getPushUps(Scanner scanner) {

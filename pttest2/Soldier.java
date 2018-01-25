@@ -2,25 +2,25 @@ package pttest2;
 
 public class Soldier {
     private Gender gender;
-    private int age;
+    private AgeRange ageRange;
     private int pushups;
     //private int situps;
     //private String runtime;
 
-    public Soldier(Gender gender, int age, int pushups) {
+    public Soldier(Gender gender, AgeRange ageRange, int pushups) {
         this.gender = gender;
-        this.age = age;
+        this.ageRange = ageRange;
         this.pushups = pushups;
         //this.situps = situps;
         //this.runtime = runtime;
     }
 
-    public int getAge() {
-        return age;
+    public AgeRange getAgeRange() {
+        return ageRange;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setAgeRange(AgeRange ageRange) {
+        this.ageRange = ageRange;
     }
 
     public Gender getGender() {
