@@ -1,20 +1,20 @@
 package pttest2;
 
-public class PushupScore {
+public class SitupScore {
     private int reps;
     private int score;
     private boolean pass;
 
-    public PushupScore(int reps, int score) {
+    public SitupScore(int reps, int score) {
     		this.reps = reps;
     		this.score = score;
-        if (score >= 60) {
-        	    pass = true;
+    		if (score >= 60) {
+         	pass = true;
         } else {
-        		pass = false;
+         	pass = false;
         }
-        
     }
+    
 
     public int getReps() {
 		return reps;
@@ -40,9 +40,10 @@ public class PushupScore {
 		this.pass = pass;
 	}
 
+
 	@Override
     public String toString() {
         //TODO: return string with reps and score here instead of using a display method
-        return "Pushup reps: " + reps + "\tPushup score: " + score;
+        return "Situp reps: " + reps + "\tSitup score: " + score;
     }
 }

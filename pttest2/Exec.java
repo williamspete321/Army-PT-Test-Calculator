@@ -8,25 +8,36 @@ public class Exec {
 		Scanner scanner = new Scanner(System.in);
 		
 		int pushupNum;
-//		int situpNum;
-//		int runMinutes;
-//		int runSeconds;
+		int situpNum;
+		int runMinutes;
+		int runSeconds;
 		Gender gender;
-		AgeRange ageRange;
+		int age;
 		
 		gender = getGender(scanner);
-		ageRange = getAgeRange(scanner);
+		age = getAge(scanner);
 		pushupNum = getPushUps(scanner);
-//		situpNum = getSitUps(scanner);
-//		runMinutes = getMinutes(scanner);
-//		runSeconds = getSeconds(scanner);
+		situpNum = getSitUps(scanner);
+		runMinutes = getMinutes(scanner);
+		runSeconds = getSeconds(scanner);
 		
 		scanner.close();
 		
-		Soldier soldier =  new Soldier(gender, ageRange, pushupNum);
+		Soldier soldier =  new Soldier(gender, age, pushupNum, situpNum, runMinutes, runSeconds);
 		
 		System.out.println(PushupCalculator.getInstance().calculatePushupScore(soldier));
+		System.out.println(SitupCalculator.getInstance().calculateSitupScore(soldier));
+		System.out.println(RuntimeCalculator.getInstance().calculateRuntimeScore(soldier));
 
+		// everything works BUT
+		// this seems super messy, is there an easier way to get a total score and show overall PASS/FAIL?
+		System.out.println(
+				TotalScoreCalculator.getInstance().calculateTotalScore(
+						PushupCalculator.getInstance().calculatePushupScore(soldier), 
+						SitupCalculator.getInstance().calculateSitupScore(soldier), 
+						RuntimeCalculator.getInstance().calculateRuntimeScore(soldier))
+							);
+		
 	}
 	
 	public static Gender getGender(Scanner scanner) {
@@ -50,69 +61,28 @@ public class Exec {
 		return gender;
 	}
 	
-	public static AgeRange getAgeRange(Scanner scanner) {
-		String inputString = "";
-		int ageInput = 0;
-		AgeRange ageRange;
-		
-		while (true) {
+	public static int getAge(Scanner scanner) {
+		String ageString = "";
+		int age = 0;
+	
+		while (age < 17) {
+			
 			System.out.println("Enter the soldier's age: ");
-			inputString = scanner.next();
+			ageString = scanner.next();
+		
 			try
 			{
-			  ageInput = Integer.parseInt(inputString);
-			  
-			  if (ageInput >= 62) {
-			      ageRange = AgeRange.SIXTYTWO_AND_HIGHER;
-			      break;
-			  } 
-			  else if (ageInput >= 57) {
-				  ageRange = AgeRange.FIFTYSEVEN_TO_SIXTYONE;
-				  break;
-			  } 
-			  else if (ageInput >= 52) {
-				  ageRange = AgeRange.FIFTYTWO_TO_FIFTYSIX;
-				  break;
-			  }
-			  else if (ageInput >= 47) {
-				  ageRange = AgeRange.FORTYSEVEN_TO_FIFTYONE;
-				  break;
-			  }
-			  else if (ageInput >= 42) {
-				  ageRange = AgeRange.FORTYTWO_TO_FORTYSIX;
-				  break;
-			  }
-			  else if (ageInput >= 37) {
-			      ageRange = AgeRange.THIRTYSEVEN_TO_FORTYONE;
-			      break;
-			  }
-			  else if (ageInput >= 32) {
-				  ageRange = AgeRange.THIRTYTWO_TO_THIRTYSIX;
-				  break;
-			  }
-			  else if (ageInput >= 27) {
-				  ageRange = AgeRange.TWENTYSEVEN_TO_THIRTYONE;
-				  break;
-				  
-			  }
-			  else if (ageInput >= 22) {
-				  ageRange = AgeRange.TWENTYTWO_TO_TWENTYSIX;
-				  break;
-			  }
-			  else if (ageInput >= 17) {
-				  ageRange = AgeRange.SEVENTEEN_TO_TWENTYONE;
-				  break;
-			  }
-			  else {
-				  System.out.println("You must enter an age of 17 or higher.");
-			  }
-			}  
+				age = Integer.parseInt(ageString);
+				if (age<17) {
+					System.out.println("You must enter an age of 17 or higher.");
+				}
+			}
 			catch(Exception e)
 			{
-			  System.out.println("ERROR: Invalid Data.");
+				System.out.println("ERROR: Invalid Data.");
 			}
 		}
-		return ageRange;
+			return age;
 	}
 	
 	public static int getPushUps(Scanner scanner) {
@@ -137,9 +107,7 @@ public class Exec {
 		}
 		return pushupNum;
 	}
-}
 	
-	/*
 	public static int getSitUps(Scanner scanner) {
 		String situpNumString;
 		int situpNum = -1;
@@ -161,7 +129,7 @@ public class Exec {
 		}
 		return situpNum;
 	}
-	
+
 	public static int getMinutes(Scanner scanner) {
 		String minutesString;
 		int minutes = -1;
@@ -209,4 +177,4 @@ public class Exec {
 		return seconds;
 	}
 
-} */
+}

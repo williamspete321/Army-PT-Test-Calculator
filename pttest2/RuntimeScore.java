@@ -1,27 +1,26 @@
 package pttest2;
 
-public class PushupScore {
-    private int reps;
+public class RuntimeScore {
+    private String runtime;
     private int score;
     private boolean pass;
 
-    public PushupScore(int reps, int score) {
-    		this.reps = reps;
+    public RuntimeScore(String runtime, int score) {
+    		this.runtime = runtime;
     		this.score = score;
-        if (score >= 60) {
-        	    pass = true;
-        } else {
-        		pass = false;
-        }
-        
+    		if (score >= 60) {
+         		pass = true;
+         } else {
+         		pass = false;
+         }
     }
 
-    public int getReps() {
-		return reps;
+    public String getRuntime() {
+		return runtime;
 	}
 
-	public void setReps(int reps) {
-		this.reps = reps;
+	public void setRuntime(String runtime) {
+		this.runtime = runtime;
 	}
 
 	public int getScore() {
@@ -43,6 +42,6 @@ public class PushupScore {
 	@Override
     public String toString() {
         //TODO: return string with reps and score here instead of using a display method
-        return "Pushup reps: " + reps + "\tPushup score: " + score;
+        return "Runtime: " + runtime + "\tRuntime score: " + score;
     }
 }

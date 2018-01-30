@@ -6,24 +6,24 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class PushUpScoreChart {
-	private Map<Integer, Integer> pushupScoreChart;
+public class RuntimeScoreChart {
+	private Map<Integer, Integer> runtimeScoreChart;
 	
-	public PushUpScoreChart(Soldier soldier) {
-		populatePushUpChart(soldier);
+	public RuntimeScoreChart(Soldier soldier) {
+		populateRuntimeScoreChart(soldier);
 	}
 	
-    public Map<Integer, Integer> getPushupScoreChart() {
-		return pushupScoreChart;
+    public Map<Integer, Integer> getRuntimeScoreChart() {
+		return runtimeScoreChart;
 	}
 
-	public void setPushupScoreChart(Map<Integer, Integer> pushupScoreChart) {
-		this.pushupScoreChart = pushupScoreChart;
+	public void setRuntimeScoreChart(Map<Integer, Integer> runtimeScoreChart) {
+		this.runtimeScoreChart = runtimeScoreChart;
 	}
 
-	private void populatePushUpChart(Soldier soldier) {
+	private void populateRuntimeScoreChart(Soldier soldier) {
         // TreeMap to have sorted results
-        pushupScoreChart = new TreeMap<>();
+        runtimeScoreChart = new TreeMap<>();
 
         try (BufferedReader in = new BufferedReader(new FileReader(
                 selectCorrectFile(soldier)))) {
@@ -34,10 +34,10 @@ public class PushUpScoreChart {
                 String[] data = line.split("\t");
 
                 if (data.length == 2) {
-                    int repetitions = Integer.parseInt(data[0]);
+                    int runtime = Integer.parseInt(data[0]);
                     int score = Integer.parseInt(data[1]);
                     
-                    pushupScoreChart.put(repetitions, score);
+                    runtimeScoreChart.put(runtime, score);
                 }
             }
         }
@@ -54,66 +54,66 @@ public class PushUpScoreChart {
 		
 		if (gender == Gender.MALE) {
 			if (age >= 62) {
-				fileName = "MalePU62+.txt";
+				fileName = "MaleRUN62+.txt";
 			} 
 			else if (age >= 57) {
-				fileName = "MalePU57-61.txt";
+				fileName = "MaleRUN57-61.txt";
 			} 
 			else if (age >= 52) {
-				fileName = "MalePU52-56.txt";
+				fileName = "MaleRUN52-56.txt";
 			}
 			else if (age >= 47) {
-				fileName = "MalePU47-51.txt";
+				fileName = "MaleRUN47-51.txt";
 			}
 			else if (age >= 42) {
-				fileName = "MalePU42-46.txt";
+				fileName = "MaleRUN42-46.txt";
 			}
 			else if (age >= 37) {
-				fileName = "MalePU37-41.txt";
+				fileName = "MaleRUN37-41.txt";
 			}
 			else if (age >= 32) {
-				fileName = "MalePU32-36.txt";
+				fileName = "MaleRUN32-36.txt";
 			}
 			else if (age >= 27) {
-				fileName = "MalePU27-31.txt";
+				fileName = "MaleRUN27-31.txt";
 			}
 			else if (age >= 22) {
-				fileName = "MalePU22-26.txt";
+				fileName = "MaleRUN22-26.txt";
 			}
 			else {
-				fileName = "MalePU17-21.txt";
+				fileName = "MaleRUN17-21.txt";
 			}
 		} 
 		else {
 			if (age >= 62) {
-				fileName = "FemalePU62+.txt";
+				fileName = "FemaleRUN62+.txt";
 			} 
 			else if (age >= 57) {
-				fileName = "FemalePU57-61.txt";
+				fileName = "FemaleRUN57-61.txt";
 			} 
 			else if (age >= 52) {
-				fileName = "FemalePU52-56.txt";
+				fileName = "FemaleRUN52-56.txt";
 			}
 			else if (age >= 47) {
-				fileName = "FemalePU47-51.txt";
+				fileName = "FemaleRUN47-51.txt";
 			}
 			else if (age >= 42) {
-				fileName = "FemalePU42-46.txt";
+				fileName = "FemaleRUN42-46.txt";
 			}
 			else if (age >= 37) {
-				fileName = "FemalePU37-41.txt";
+				fileName = "FemaleRUN37-41.txt";
 			}
 			else if (age >= 32) {
-				fileName = "FemalePU32-36.txt";
+				fileName = "FemaleRUN32-36.txt";
 			}
 			else if (age >= 27) {
-				fileName = "FemalePU27-31.txt";
+				fileName = "FemaleRUN27-31.txt";
 			}
 			else if (age >= 22) {
-				fileName = "FemalePU22-26.txt";
+				fileName = "FemaleRUN22-26.txt";
 			}
 			else {
-				fileName = "FemalePU17-21.txt";
+				fileName = "FemaleRUN17-21.txt";
 			}
 		}
 		return fileName;
